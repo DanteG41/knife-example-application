@@ -1,0 +1,9 @@
+{
+  "service": {
+    "name": "tcp",
+    "tags": [
+      "tcp"
+    ],
+    "port": 3600
+  }
+}

@@ -1,10 +1,13 @@
 {
   "service": {
     "name": "nginx",
-    "tags": ["nginx"],
+    "tags": [
+      "nginx"
+    ],
     "port": 80,
     "check": {
       "script": "curl -c1 localhost:80 > /dev/null",
       "interval": "10s"
     }
+  }
 }

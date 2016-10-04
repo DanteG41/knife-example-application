@@ -1,0 +1,9 @@
+{
+  "service": {
+    "name": "udp",
+    "tags": [
+      "udp"
+    ],
+    "port": 3500
+  }
+}

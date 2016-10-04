@@ -5,7 +5,7 @@ ENV TZ=Asia/Yekaterinburg
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && \
-  apt-get install -y nginx && \
+  apt-get install -yq --no-install-recommends nginx netcat && \
   rm -rf /var/lib/apt/lists/* && \
   echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   chown -R www-data:www-data /var/lib/nginx
@@ -13,15 +13,19 @@ RUN apt-get update && \
 # Define mountable directories
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
-ADD nginx/config/nginx.json /etc/consul/conf.d/nginx.json
+ADD nginx/services/nginx.sh /etc/service/nginx/run
+ADD nginx/config/* /etc/consul/conf.d/
+
+ADD nginx/services/tcp.sh /etc/service/tcp/run
+ADD nginx/services/udp.sh /etc/service/udp/run
+
 ENV CONSUL_HOST consul
 
-# Define working directory
-WORKDIR /etc/nginx
 
-# Define default command
-CMD ["nginx"]
-
-# Expose ports
+# nginx
 EXPOSE 80
 EXPOSE 443
+# netcat udp
+EXPOSE 3500
+# netcat tcp
+EXPOSE 3600
