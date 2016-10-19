@@ -9,6 +9,15 @@ services:
       - data
     depends_on:
       - data
+  nginx:
+    extends:
+      file: services.yml
+      service: nginx
+    image: nginx:<%= @stand.short_reference %>
+    volumes_from:
+      - data
+    depends_on:
+      - app
   data:
     extends:
       file: services.yml
