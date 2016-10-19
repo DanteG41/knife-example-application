@@ -15,6 +15,7 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 
 ADD nginx/services/nginx.sh /etc/service/nginx/run
 ADD nginx/config/* /etc/consul/conf.d/
+ADD nginx/nginx.conf /etc/nginx/sites-enabled/default.conf
 
 ADD nginx/services/tcp.sh /etc/service/tcp/run
 ADD nginx/services/udp.sh /etc/service/udp/run
