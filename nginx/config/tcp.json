@@ -1,9 +1,0 @@
-{
-  "service": {
-    "name": "stand_${SUB_DOMAIN}_tcp",
-    "tags": [
-      "tcp"
-    ],
-    "port": 3600
-  }
-}

@@ -1,0 +1,13 @@
+{
+  "service": {
+    "name": "${DISCOVERY_DNS_PREFIX}_db",
+    "tags": [
+      "tcp"
+    ],
+    "port": 5432,
+    "check": {
+      "script": "PGPASSWORD=docker psql --no-password -U docker -h localhost -c 'SELECT version();'",
+      "interval": "5s"
+    }
+  }
+}

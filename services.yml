@@ -2,7 +2,13 @@ version: '2'
 services:
   app:
     build:
-      dockerfile: nginx/Dockerfile
+      dockerfile: app/Dockerfile
+  nginx:
+    build:
+      dockerfile: app/Dockerfile
+  db:
+    build:
+      dockerfile: db/Dockerfile
   data:
     build:
       dockerfile: data/Dockerfile

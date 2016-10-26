@@ -1,0 +1,10 @@
+{
+  "service": {
+    "name": "${DISCOVERY_DNS_PREFIX}_app",
+    "port": 3000,
+    "check": {
+      "script": "curl -c1 localhost:3000 > /dev/null",
+      "interval": "5s"
+    }
+  }
+}
