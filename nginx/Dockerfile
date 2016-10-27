@@ -14,7 +14,8 @@ RUN apt-get update && \
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
 ADD nginx/services/nginx.sh /etc/service/nginx/run
-ADD nginx/config/* /etc/consul/conf.d/
+ADD nginx/config/nginx.json /etc/consul/conf.d/
+ADD nginx/config/app.nginx.conf /etc/nginx/sites-enabled/app.conf
 
 ENV CONSUL_HOST consul
 

@@ -20,9 +20,6 @@ gem 'underscore-rails'
 
 gem 'puma'
 
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-
 gem 'bootstrap-sass'
 gem 'jquery-turbolinks'
 

@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "${DISCOVERY_DNS_PREFIX}_db",
+    "name": "${DISCOVERY_DNS_PREFIX}db",
     "tags": [
       "tcp"
     ],

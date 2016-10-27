@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-exec rails s
+exec $APP_PATH/bin/rails s

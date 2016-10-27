@@ -10,8 +10,6 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :user
-
   validates :body, presence: true, length: {maximum: 2000}
 
   after_create :notify_comment_added

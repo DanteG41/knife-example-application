@@ -23,11 +23,11 @@ RUN /etc/init.d/postgresql start &&\
   setuser postgres createdb docker -O docker docker &&\
   /etc/init.d/postgresql stop
 
-ADD postgresql.conf /etc/postgresql/9.5/main/postgresql.conf
-ADD consul.conf /etc/consul/conf.d/postgresql.conf
+ADD db/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf
+ADD db/consul.json /etc/consul/conf.d/postgresql.json
 
 # entrypoint
-ADD postgresql.sh /etc/service/postgresql/run
+ADD db/postgresql.sh /etc/service/postgresql/run
 
 ENV CONSUL_HOST=consul
 

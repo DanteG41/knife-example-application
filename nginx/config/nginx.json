@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "${DISCOVERY_DNS_PREFIX}_nginx",
+    "name": "${DISCOVERY_DNS_PREFIX}nginx",
     "tags": [
       "http",
       "http:${SUB_DOMAIN}.${DOMAIN}"

@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "${DISCOVERY_DNS_PREFIX}_app",
+    "name": "${DISCOVERY_DNS_PREFIX}app",
     "port": 3000,
     "check": {
       "script": "curl -c1 localhost:3000 > /dev/null",
