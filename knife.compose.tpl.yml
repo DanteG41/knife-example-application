@@ -4,7 +4,6 @@ services:
     extends:
       file: services.yml
       service: app
-    image: app:<%= @stand.short_reference %>
     volumes_from:
       - data
     depends_on:
