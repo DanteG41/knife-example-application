@@ -23,14 +23,6 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F
   skytools3-ticker && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN echo "host all all 127.0.0.1/32 trust" > /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf && \
-  echo "host all all ::1/128 trust" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf && \
-  echo "local all all trust" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf && \
-  echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf && \
-  echo "listen_addresses='*'" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf && \
-  echo "ssl=false" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf && \
-  echo "plperl.on_init = 'use utf8; use re; package utf8; require \"utf8_heavy.pl\";'" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf
-
 RUN /etc/init.d/postgresql start &&\
   while ps aux | grep "postgres: [s]tartup process" > /dev/null; do sleep 1;done &&\
   setuser postgres psql -c "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
@@ -38,6 +30,9 @@ RUN /etc/init.d/postgresql start &&\
   /etc/init.d/postgresql stop &&\
   echo "data_directory='/data'" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf && \
   mkdir /etc/service/postgresql
+
+ADD postgresql.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf
+ADD pg_hba.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf
 
 ADD db/consul.json /etc/consul/conf.d/postgresql.json
 
