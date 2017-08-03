@@ -1,4 +1,4 @@
-FROM devopsftw/baseimage:dev
+FROM abakpress/knife-base
 
 # YEKT locale
 ENV TZ=Asia/Yekaterinburg
