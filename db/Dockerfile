@@ -31,8 +31,8 @@ RUN /etc/init.d/postgresql start &&\
   echo "data_directory='/data'" >> /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf && \
   mkdir /etc/service/postgresql
 
-ADD postgresql.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf
-ADD pg_hba.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf
+ADD db/postgresql.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf
+ADD db/pg_hba.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/pg_hba.conf
 
 ADD db/consul.json /etc/consul/conf.d/postgresql.json
 
@@ -41,5 +41,4 @@ ADD db/postgresql.sh /etc/service/postgresql/run
 
 ENV CONSUL_HOST=consul
 
-VOLUME ["/data"]
 EXPOSE 5432
