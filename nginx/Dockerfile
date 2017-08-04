@@ -15,6 +15,7 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 
 ADD nginx/services/nginx.sh /etc/service/nginx/run
 ADD nginx/config/nginx.json /etc/consul/conf.d/
+ADD nginx/config/nginx.conf /etc/nginx/nginx.conf
 ADD nginx/config/app.nginx.conf /etc/nginx/sites-enabled/app.conf
 
 ENV CONSUL_HOST consul
