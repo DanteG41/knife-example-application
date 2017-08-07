@@ -4,7 +4,7 @@ default: &default
   pool: 16
   username: docker
   password: docker
-    host: <%= ENV["DISCOVERY_DNS_PREFIX"] %>db
+  host: <%= ENV["DISCOVERY_DNS_PREFIX"] %>db
   port: 5432
 
 development:
