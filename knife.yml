@@ -3,7 +3,6 @@ deploy_config: knife.compose.tpl.yml
 
 urls:
   Test: <%= @stand[:url] %>/test
-  Subdomain: http://mail.<%= @stand.host %>/
 
 data_container: 'data'
 code_containers:
