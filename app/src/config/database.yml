@@ -4,13 +4,13 @@ default: &default
   pool: 16
   username: docker
   password: docker
-  host: ${DISCOVERY_DNS_PREFIX}db
+    host: <%= ENV["DISCOVERY_DNS_PREFIX"] %>db
   port: 5432
 
 development:
   <<: *default
   database: docker
-  host: ${DISCOVERY_DNS_PREFIX}db
+  host: <%= ENV["DISCOVERY_DNS_PREFIX"] %>db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
