@@ -1,17 +1,12 @@
 FROM abakpress/knife-base
 
 # YEKT locale
-ENV TZ=Asia/Yekaterinburg
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update && \
-  apt-get install -yq --no-install-recommends nginx && \
-  rm -rf /var/lib/apt/lists/* && \
-  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
-  chown -R www-data:www-data /var/lib/nginx
+RUN rm /etc/localtime && ln -sf /usr/share/zoneinfo/Asia/Yekaterinburg /etc/localtime
 
-# Define mountable directories
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+RUN add-apt-repository ppa:nginx/development && \
+    apt-get update && apt-get install -y nginx nginx-extras && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD nginx/services/nginx.sh /etc/service/nginx/run
 ADD nginx/config/nginx.json /etc/consul/conf.d/
@@ -20,5 +15,6 @@ ADD nginx/config/app.nginx.conf /etc/nginx/sites-enabled/app.conf
 
 ENV CONSUL_HOST consul
 
-# nginx
-EXPOSE 80
+COPY nginx/init.d/* /etc/my_init.d/
+
+EXPOSE 80 8300 8301 8301/udp 8302 8302/udp 8400 8500 8600 8600/udp
