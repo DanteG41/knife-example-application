@@ -1,4 +1,4 @@
-FROM busybox
+FROM index.exp.railsc.ru/example-project_example-project_data:latest
 
 # YEKT locale
 ENV TZ=Asia/Yekaterinburg
